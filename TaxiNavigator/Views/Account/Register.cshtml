@@ -1,0 +1,68 @@
+﻿@model TaxiNavigator.Models.RegisterViewModel
+@{
+    ViewBag.Title = "Register";
+}
+
+<div class="dark-overlay"></div>
+<div class="register-section">
+    <div class="">
+        <div class="home-inner">
+            <div class="container">
+                <div class="row">
+                    <div class="col-7 m-auto" style="">
+                        <div style="margin-top:-145px" class="taxi-header-central taxi-header text-center"><strong><span class="color-2 taxi-header">T</span>axi</strong></div>
+                        <div class="card bg-primary text-center card-form">
+                            <div class="card-body register-card">
+                                <h3 class="display-3 text-capitalize text-danger"><strong>Sign Up Today</strong></h3>
+                                <p class="text-capitalize text-danger">Please fill out this form to register</p>
+
+                                @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                                {
+                                    @Html.AntiForgeryToken()
+                                    <h4 class="text-capitalize text-danger">Create a new account.</h4>
+                                        <hr />
+                                        @Html.ValidationSummary("", new { @class = "text-danger" })
+                                        <div class="form-group">
+                                            @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label email-input" })
+                                            <div class="col-md-10 m-auto">
+                                                @Html.TextBoxFor(m => m.Email, new { @class = "form-control m-auto" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label password-input" })
+                                            <div class="col-md-10 m-auto">
+                                                @Html.PasswordFor(m => m.Password, new { @class = "form-control m-auto" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 control-label psw-confirm-input" })
+                                            <div class="col-md-10 m-auto">
+                                                @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control m-auto" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-md-offset-2 col-md-10">
+                                                <input type="submit" class="btn btn-register bg-danger text-light" value="Register" />
+                                            </div>
+                                        </div>
+                                }
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+</div>
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")
+}

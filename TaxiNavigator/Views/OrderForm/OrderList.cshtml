@@ -1,0 +1,74 @@
+﻿@model IEnumerable<TaxiNavigator.Models.OrderForm>
+@{
+    ViewBag.Title = "Register";
+}
+
+<div class="dark-overlay"></div>
+<div class="register-section">
+    <div class="">
+        <div class="home-inner">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12 m-auto" style="">
+                        <div style="margin-top:-145px" class="taxi-header-central taxi-header text-center"><strong><span class="color-2 taxi-header">T</span>axi</strong></div>
+                        <div class="card text-center card-form" style="background-color:#ffd405">
+                            <table class="redTable m-auto">
+                                <thead>
+                                    <tr>
+                                        <th>Numer zamóweinia</th>
+                                        <th>Imię</th>
+                                        <th>Nazwisko</th>
+                                        <th>Numer kierowcy</th>
+                                        <th>Imię kierowcy</th>
+                                        <th>Telephon kierowcy</th>
+                                        <th>Samochód</th>
+                                        <th>Data i czas przyjazdu</th>
+                                        <th>Adres</th>
+                                        <th>Usuń</th>
+                                    </tr>
+                                </thead>
+                                <tfoot>
+                                    <tr>
+                                        <td colspan="10">
+                                            <div class="links"><a href="#">&laquo;</a> <a class="active" href="#">1</a> <a href="#">2</a> <a href="#">3</a> <a href="#">4</a> <a href="#">&raquo;</a></div>
+                                        </td>
+                                    </tr>
+                                </tfoot>
+                                <tbody>
+                                    @if (Model.Count() == 0)
+                                    {
+                                    <tr>Nie ma dannych</tr>
+                                    }
+                                    @foreach (var x in Model)
+                                    {
+                                        
+                                    <tr>
+                                        <td>@Html.ActionLink(x.OrderNmb,"Edit","OrderForm",new {id = x.Id },null)</td>
+                                        <td>@x.Name</td>
+                                        <td>@x.SecondName</td>
+                                        <td>@x.Driver.Id</td>
+                                        <td>@x.Driver.Name</td>
+                                        <td>@x.Driver.Phone</td>
+                                        <td>@x.Driver.CarType</td>
+                                        <td>@x.OrderDate</td>
+                                        <td>@x.Adress</td>
+                                        <td>@Html.ActionLink("Usuń", "Delete", "OrderForm", new {ordernmb = x.OrderNmb }, null)</td>
+                                    </tr>
+                                    }
+
+                                </tbody>
+                               
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+</div>
+
+
+

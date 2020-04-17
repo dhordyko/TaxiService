@@ -1,0 +1,144 @@
+﻿@using Microsoft.AspNet.Identity
+
+<!<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+
+    @Scripts.Render("~/bundles/modernizr")
+
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/moment")
+    <link href="https://fonts.googleapis.com/css?family=Lato:700,700i,100,300" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" />
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" />
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
+    <link rel="stylesheet" href="/path/to/theme.default.css">
+    
+</head>
+<body class="p-0">
+    <nav class="navbar navbar-expand-lg bg-dark navbar-dark fixed-top ">
+        <div class="container-fluid" style="line-height:0.9">
+
+
+            <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <a id="logo" href="index.html" class="navbar-brand taxi-header"><span class="color-2 taxi-header">T</span>axi</a>
+
+
+            <div class="collapse navbar-collapse " id="navbarCollapse">
+                <ul id="nav-list" class="navbar-nav taxi-header ">
+                    <li class="nav-item pr-3">
+                        @Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link color-2" })
+
+                    </li>
+                    <li class="nav-item pr-3">
+                        <a id="OrderList" style="color:#fff1ad" href="@Url.Action("OrderList", "OrderForm")" class="nav-link text-shadow">Lista Zamówień</a>
+                    </li>
+                    <li class="nav-item pr-3">
+                        <a id="CreateOrder" style="color:#fff1ad" href="@Url.Action("Index", "OrderForm")" class="nav-link text-shadow">Zrób zamówienie</a>
+                    </li>
+
+                    <li class="nav-item pr-3">
+                        <a id="register" style="color:#fff1ad" href="~/Account/Register" class="nav-link text-shadow">Register</a>
+                    </li>
+                    <li class="nav-item pr-3">
+                        <a id="login" href="~/Account/Login" style="color:#fff1ad" class="nav-link text-shadow">Log in</a>
+                    </li>
+                    <li class="nav-item pr-3"></li>
+                    <li id="li-phone" class="nav-item pr-3">
+                        @if (Request.IsAuthenticated)
+            {
+                using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm"}))
+                {
+                                @Html.AntiForgeryToken()
+                                @Html.ActionLink( User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+                                <div>
+                                    <a href="javascript:document.getElementById('logoutForm').submit()">Log off</a>
+                                </div>
+
+
+
+                            }
+                        }
+                        else
+                        {
+
+                        } 
+                    </li>
+
+                </ul>
+            </div>
+           
+            <a href="index.html" id="phone" class="navbar-brand navbar-right taxi-header float-right ml-auto">
+                <span>
+                    <i id="phone-icon" class="fa fa-phone-volume color-2" style="font-size:70px" aria-hidden="true"></i>
+                </span>800 666 777
+            </a>
+        </div>
+
+    </nav>
+    <div id="page-container">
+        <div id="page-container" class="container-fluid body-content p-0 m-0">
+            @RenderBody()
+
+        </div>
+        <footer id="footer" class="bg-dark container-fluid" style="border-top:solid  20px #ffd405;">
+            <div id="page-container" class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12 py-5">
+                        <div class="mb-5 d-flex justify-content-center">
+                            <a class="fb-ic text-light">
+                                <i class="fab fa-facebook-f fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
+                            </a>
+                            <!-- Twitter -->
+                            <a class="tw-ic text-light">
+                                <i class="fab fa-twitter fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
+                            </a>
+                            <!-- Google +-->
+                            <a class="gplus-ic text-light">
+                                <i class="fab fa-google-plus-g fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
+                            </a>
+                            <!--Linkedin -->
+                            <a class="li-ic text-light">
+                                <i class="fab fa-linkedin-in fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
+                            </a>
+                            <!--Instagram-->
+                            <a class="ins-ic text-light">
+                                <i class="fab fa-instagram fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
+                            </a>
+                            <!--Pinterest-->
+                            <a class="pin-ic text-light">
+                                <i class="fab fa-pinterest fa-lg white-text fa-2x"> </i>
+                            </a>
+                        </div>
+                    </div>
+                    <!-- Grid column -->
+
+                </div>
+                <!-- Grid row-->
+
+            </div>
+            <!-- Footer Elements -->
+            <!-- Copyright -->
+            <div class="footer-copyright text-center py-3">
+                © 2018 Copyright:
+                <a href="https://mdbootstrap.com/education/bootstrap/"> MDBootstrap.com</a>
+            </div>
+            <!-- Copyright -->
+
+        </footer>
+    </div>
+    <script type="text/javascript" src="/path/to/jquery-latest.js"></script>
+    <script type="text/javascript" src="/path/to/jquery.tablesorter.js"></script>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+ 
+    @RenderSection("scripts", required: false)
+
+</body>
+</html>
+
